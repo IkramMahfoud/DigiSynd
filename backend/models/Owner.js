@@ -7,20 +7,11 @@ const ownerSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
         unique: true,
-    },
-    aparetment: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "apartement",
-      required: true
     }
-},
-{
-  timestamps: true,
 }
 );
 
-const Syndic = mongoose.model('Owner', ownerSchema);
+const Owner = mongoose.model('Owner', ownerSchema);
 
 module.exports = Owner;
