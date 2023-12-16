@@ -8,9 +8,9 @@ import { useHistory } from 'react-router-dom';
 
 const LoginPage = () =>
 {
+  //utilisation de (useState, useEffect) dans ce component
   const history = useHistory();
   const dispatch = useDispatch();
-
 
   const loginData = useSelector(state => state.loginData);
 

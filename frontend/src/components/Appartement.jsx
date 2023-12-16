@@ -21,7 +21,7 @@ const Appartement = () =>
       }).catch(err => console.error(err))
   }
 
-
+  //utilisation de (useEffect) dans ce component
   useEffect(() =>
   {
     getApartments()
