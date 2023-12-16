@@ -37,15 +37,15 @@ const addApartment = async (req, res) => {
   };
 
 
-
+// populate
 const getApartments = async (req, res) => {
-    try {
-      const apartments = await Apartment.find();
-      res.status(200).json(apartments);
-    } catch (error) {
-      console.error(error);
-      res.status(400).json({ error: error.message });
-    }
+  try {
+    const apartments = await Apartment.find().populate('owner', 'fullName');
+    res.status(200).json(apartments);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: error.message });
+  }
 };
 
 
