@@ -1,15 +1,14 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
-
 const Syndic = require('../models/Syndic')
+
 
 
 // this it works for once !
 // @desc  Register a new Syndic
 // @route POST /api/register
 // @access Public
-
 const register = asyncHandler(async (req, res) =>
 {
   const { fullname, email, password } = req.body
@@ -33,7 +32,8 @@ const register = asyncHandler(async (req, res) =>
   const syndic = await Syndic.create({
     fullname,
     email,
-    password: hashedPassword, // Assuming i've hashed the password
+    //i've hashed the password
+    password: hashedPassword,
   });
 
   // check if created
@@ -42,7 +42,8 @@ const register = asyncHandler(async (req, res) =>
       _id: syndic.id,
       fullname: syndic.fullname,
       email: syndic.email,
-      token: generateToken(syndic._id)
+      token: generateToken(syndic._id),
+      message : "Syndic registered 😍"
     })
   } else {
     res.status(400)
@@ -60,6 +61,7 @@ const login = asyncHandler(async (req, res) =>
   const { email, password } = req.body;
 
   const syndic = await Syndic.findOne({ email })
+
   if (syndic && (await bcrypt.compare(password, syndic.password))) {
     res.json({
       _id: syndic.id,
